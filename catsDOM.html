@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Котики</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .cats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .cat-card {
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 10px;
+            text-align: left;
+            background: #f9f9f9;
+        }
+        .cat-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .cat-card h3 {
+            margin: 10px 0;
+        }
+        .favourite {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Котики в поисках дома</h1>
+    <div class="cats-container" id="catsContainer"></div>
+
+    <script>
+        const cats = [
+            {
+                "name": "Лара",
+                "img_link": "https://www.friendforpet.ru/api/sites/default/files/2021-09/167200DD-A44F-4845-8D4D-ACCFC180165A.jpeg",
+                "age": 8,
+                "rate": 7,
+                "favourite": false,
+                "description": "Лара – шотландская вислоухая, у нее остеохондродисплазия. Лара спокойная, очень ласковая и контактная. Болезнь не лечится и специального ухода не нужно.",
+                "id": 1
+            },
+            {
+                "name": "Базиль",
+                "img_link": "https://www.friendforpet.ru/api/sites/default/files/2022-01/064AEBCB-45EC-4CE7-AB13-C65F10F00B7B.jpeg",
+                "age": 2,
+                "rate": 10,
+                "favourite": false,
+                "description": "Внимательный, активный и ласковый. Любит играть, катать мяч, и мурчать на пледе рядом с людьми! Прилично воспитан, приучен к лотку. Вакцинирован, имеет ветеринарный паспорт.",
+                "id": 2
+            },
+            {
+                "name": "Риш",
+                "img_link": "https://www.friendforpet.ru/api/sites/default/files/2022-01/_DM34706.JPG",
+                "age": 1,
+                "rate": 10,
+                "favourite": true,
+                "description": "Риш любит лесенки, канаты. Очень активный и дружелюбный кот. Риш полностью здоров, привит, кастрирован. Использует лоточек и очень аккуратен.",
+                "id": 3
+            }
+        ];
+
+        function displayCats() {
+            const container = document.getElementById("catsContainer");
+            cats.forEach(cat => {
+                const catCard = document.createElement("div");
+                catCard.classList.add("cat-card");
+                catCard.innerHTML = `
+                    <img src="${cat.img_link}" alt="${cat.name}">
+                    <h3>${cat.name} ${cat.favourite ? '<span class="favourite">❤️</span>' : ''}</h3>
+                    <p><strong>Возраст:</strong> ${cat.age} лет</p>
+                    <p><strong>Рейтинг:</strong> ${cat.rate}/10</p>
+                    <p>${cat.description}</p>
+                `;
+                container.appendChild(catCard);
+            });
+        }
+
+        displayCats();
+    </script>
+</body>
+</html>
